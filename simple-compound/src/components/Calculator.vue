@@ -5,7 +5,7 @@
       <v-icon slot="append" color="green">mdi-percent</v-icon>
     </v-text-field>
     <v-text-field label="Calculation period" v-model="calculationPeriod"></v-text-field>
-    <v-overflow-btn :items="dropdownCalculationPeriodOptions" label="Compound interval"></v-overflow-btn>
+    <v-overflow-btn :items="dropdownCalculationPeriodOptions" item-text="name" item-value="value" label="Compound interval" v-model="calculationPeriodInterval"></v-overflow-btn>
     <v-text-field label="Regular monthly deposit" v-model="regularDeposit"></v-text-field>
     {{ result }}
   </v-container>
@@ -18,12 +18,35 @@ export default {
     baseAmount: 0,
     interestRate: 0,
     calculationPeriod: 0,
-    dropdownCalculationPeriodOptions: ['Daily', 'Monthly', 'Quarterly', 'Half yearly', 'Yearly'],
+    calculationPeriodInterval: 1,
+    dropdownCalculationPeriodOptions:
+    [
+      {
+        name: 'Daily',
+        value: 365
+      },
+      {
+        name: 'Monthly',
+        value: 12
+      },
+      {
+        name: 'Quarterly',
+        value: 4
+      },
+      {
+        name: 'Half yearly',
+        value: 2
+      },
+      {
+        name: 'Yearly',
+        value: 1
+      }
+    ],
     regularDeposit: 0
   }),
   computed: {
     result () {
-      return (this.baseAmount * Math.pow((1 + (this.interestRate / 100)), this.calculationPeriod)).toFixed(2)
+      return (this.baseAmount * Math.pow((1 + ((this.interestRate / 100))), this.calculationPeriod)).toFixed(2)
     }
   }
 }
