@@ -7,6 +7,7 @@
     <v-text-field label="Calculation period" v-model="calculationPeriod"></v-text-field>
     <v-overflow-btn :items="dropdownCalculationPeriodOptions" label="Compound interval"></v-overflow-btn>
     <v-text-field label="Regular monthly deposit" v-model="regularDeposit"></v-text-field>
+    {{ result }}
   </v-container>
 </template>
 
@@ -19,6 +20,11 @@ export default {
     calculationPeriod: 0,
     dropdownCalculationPeriodOptions: ['Daily', 'Monthly', 'Quarterly', 'Half yearly', 'Yearly'],
     regularDeposit: 0
-  })
+  }),
+  computed: {
+    result () {
+      return (this.baseAmount * Math.pow((1 + (this.interestRate / 100)), this.calculationPeriod)).toFixed(2)
+    }
+  }
 }
 </script>
