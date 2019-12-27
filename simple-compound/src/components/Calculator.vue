@@ -46,7 +46,7 @@ export default {
   }),
   computed: {
     result () {
-      return (this.baseAmount * Math.pow((1 + ((this.interestRate / 100))), this.calculationPeriod)).toFixed(2)
+      return (this.baseAmount * Math.pow((1 + ((this.interestRate / 100) / this.calculationPeriodInterval)), (this.calculationPeriodInterval * this.calculationPeriod))).toFixed(2)
     }
   }
 }
