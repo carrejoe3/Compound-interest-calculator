@@ -4,8 +4,12 @@
     <v-text-field label="Interest rate" v-model="interestRate">
       <v-icon slot="append" color="green">mdi-percent</v-icon>
     </v-text-field>
-    <v-text-field label="Calculation period" v-model="calculationPeriodValue"></v-text-field>
-    <v-overflow-btn :items="calculationPeriodTypes" item-text="name" item-value="value" v-model="selectedCalculationPeriodTypeValue"></v-overflow-btn>
+    <v-container>
+      <v-row>
+        <v-text-field label="Calculation period" v-model="calculationPeriodValue"></v-text-field>
+        <v-overflow-btn :items="calculationPeriodTypes" item-text="name" item-value="value" v-model="selectedCalculationPeriodTypeValue"></v-overflow-btn>
+      </v-row>
+    </v-container>
     <v-overflow-btn :items="dropdownCalculationPeriodOptions" item-text="name" item-value="value" label="Compound interval" v-model="calculationPeriodInterval"></v-overflow-btn>
     <v-text-field label="Regular monthly deposit" v-model="regularDeposit"></v-text-field>
     {{ result }}
