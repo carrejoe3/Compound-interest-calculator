@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-text-field label="Base amount" v-model="baseAmount"></v-text-field>
+    <v-text-field label="Principle amount" v-model="baseAmount"></v-text-field>
     <v-text-field label="Interest rate" v-model="interestRate">
-      <v-icon slot="append" color="green">mdi-percent</v-icon>
+      <v-icon slot="append" color="black">mdi-percent</v-icon>
     </v-text-field>
     <v-container>
       <v-row>
@@ -13,9 +13,12 @@
         </v-btn-toggle>
       </v-row>
     </v-container>
+    <div>Compound interval</div>
     <v-overflow-btn :items="dropdownCalculationPeriodOptions" item-text="name" item-value="value" label="Compound interval" v-model="calculationPeriodInterval"></v-overflow-btn>
-    <v-text-field label="Regular monthly deposit" v-model="regularDeposit"></v-text-field>
-    {{ result }}
+    <div class="resultsSection">
+      <div>Total balance: {{ result }}</div>
+      <div>Total interest earned: {{ totalInterest }}</div>
+    </div>
   </v-container>
 </template>
 
@@ -50,16 +53,27 @@ export default {
         name: 'Yearly',
         value: 1
       }
-    ],
-    regularDeposit: 0
+    ]
   }),
   computed: {
     calculationPeriod () {
       return this.calculationPeriodValue / this.selectedCalculationPeriodTypeValue
     },
+    depositTotal () {
+      return this.calculationPeriodInterval * this.calculationPeriod
+    },
     result () {
-      return (this.baseAmount * Math.pow((1 + ((this.interestRate / 100) / this.calculationPeriodInterval)), (this.calculationPeriodInterval * this.calculationPeriod))).toFixed(2)
+      return (parseInt(this.baseAmount) * Math.pow((1 + ((this.interestRate / 100) / this.calculationPeriodInterval)), (this.calculationPeriodInterval * this.calculationPeriod))).toFixed(2)
+    },
+    totalInterest () {
+      return (this.result - this.baseAmount).toFixed(2)
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.resultsSection {
+  margin-top: 5%;
+}
+</style>
