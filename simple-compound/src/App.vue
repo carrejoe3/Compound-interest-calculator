@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
+      <div class="d-flex align-center" id="titleBar">
         Simple Compound
       </div>
     </v-app-bar>
@@ -16,3 +16,10 @@ export default {
   name: 'App'
 }
 </script>
+
+<style lang="scss" scoped>
+#titleBar {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+</style>

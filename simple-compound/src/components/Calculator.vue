@@ -1,20 +1,33 @@
 <template>
-  <v-container>
-    <v-text-field label="Principle amount" v-model="baseAmount"></v-text-field>
-    <v-text-field label="Interest rate" v-model="interestRate">
-      <v-icon slot="append" color="black">mdi-percent</v-icon>
-    </v-text-field>
-    <v-container>
+  <v-container class="calculatorContainer">
+    <div class="inputField">
+      <div class="label">Principle amount</div>
+      <v-text-field v-model="baseAmount" outlined></v-text-field>
+    </div>
+    <div class="inputField">
+      <div class="label">Interest rate</div>
+      <v-text-field v-model="interestRate" outlined>
+        <v-icon slot="append" color="$grey">mdi-percent</v-icon>
+      </v-text-field>
+    </div>
+    <div class="inputField">
+      <div class="label">Calculation period</div>
       <v-row>
-        <v-text-field label="Calculation period" v-model="calculationPeriodValue"></v-text-field>
-        <v-btn-toggle v-model="selectedCalculationPeriodTypeValue" mandatory>
-          <v-btn value="1">Years</v-btn>
-          <v-btn value="12">Months</v-btn>
-        </v-btn-toggle>
+        <v-col>
+          <v-text-field v-model="calculationPeriodValue" outlined></v-text-field>
+        </v-col>
+        <v-col>
+          <v-btn-toggle v-model="selectedCalculationPeriodTypeValue" mandatory>
+            <v-btn value="1">Years</v-btn>
+            <v-btn value="12">Months</v-btn>
+          </v-btn-toggle>
+        </v-col>
       </v-row>
-    </v-container>
-    <div>Compound interval</div>
-    <v-overflow-btn :items="dropdownCalculationPeriodOptions" item-text="name" item-value="value" label="Compound interval" v-model="calculationPeriodInterval"></v-overflow-btn>
+    </div>
+    <div class="inputField">
+      <div class="label">Compound interval</div>
+      <v-overflow-btn :items="dropdownCalculationPeriodOptions" item-text="name" item-value="value" v-model="calculationPeriodInterval"></v-overflow-btn>
+    </div>
     <div class="resultsSection">
       <div>Total balance: {{ result }}</div>
       <div>Total interest earned: {{ totalInterest }}</div>
@@ -72,8 +85,24 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.resultsSection {
-  margin-top: 5%;
+<style lang="scss">
+
+$grey: #50514F;
+
+.calculatorContainer {
+  color: $grey;
+  .resultsSection {
+    margin-top: 5%;
+  }
+  .label {
+    font-size: 1em;
+    color: $grey;
+  }
+  .inputField {
+    margin-top: 4%;
+    .col {
+      padding-top: 0px;
+    }
+  }
 }
 </style>
