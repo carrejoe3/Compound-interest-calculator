@@ -92,14 +92,14 @@ $grey: #50514F;
 .calculatorContainer {
   color: $grey;
   .resultsSection {
-    margin-top: 5%;
+    margin-top: 3%;
   }
   .label {
     font-size: 1em;
     color: $grey;
   }
   .inputField {
-    margin-top: 4%;
+    margin-top: 3%;
     .col {
       padding-top: 0px;
     }
