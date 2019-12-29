@@ -1,0 +1,8 @@
+{
+  "appId": "com.joecarre.compoundme",
+  "appName": "Compound Me",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist",
+  "cordova": {}
+}
