@@ -105,6 +105,7 @@ $grey: #50514F;
     margin-top: 2%;
     .col {
       padding-top: 0px;
+      padding-bottom: 0px;
     }
   }
 }
