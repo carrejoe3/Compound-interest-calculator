@@ -12,6 +12,12 @@
 </template>
 
 <script>
+
+import { Plugins } from '@capacitor/core'
+const { SplashScreen } = Plugins
+
+SplashScreen.hide()
+
 export default {
   name: 'App'
 }
