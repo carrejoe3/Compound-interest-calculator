@@ -2,11 +2,11 @@
   <v-container class="calculatorContainer">
     <div class="inputField">
       <div class="label">Principle amount</div>
-      <v-text-field v-model="baseAmount" outlined></v-text-field>
+      <v-text-field v-model="baseAmount" outlined type="number"></v-text-field>
     </div>
     <div class="inputField">
       <div class="label">Interest rate</div>
-      <v-text-field v-model="interestRate" outlined>
+      <v-text-field v-model="interestRate" outlined type="number">
         <v-icon slot="append" color="$grey">mdi-percent</v-icon>
       </v-text-field>
     </div>
@@ -14,7 +14,7 @@
       <div class="label">Calculation period</div>
       <v-row>
         <v-col>
-          <v-text-field v-model="calculationPeriodValue" outlined></v-text-field>
+          <v-text-field v-model="calculationPeriodValue" type="number" outlined></v-text-field>
         </v-col>
         <v-col>
           <v-btn-toggle v-model="selectedCalculationPeriodTypeValue" mandatory>
@@ -69,6 +69,9 @@ export default {
     ]
   }),
   computed: {
+    nullCheckedBaseAmount () {
+      return parseInt(this.baseAmount) == null ? 0 : this.baseAmount
+    },
     calculationPeriod () {
       return this.calculationPeriodValue / this.selectedCalculationPeriodTypeValue
     },
@@ -76,7 +79,7 @@ export default {
       return this.calculationPeriodInterval * this.calculationPeriod
     },
     result () {
-      return (parseInt(this.baseAmount) * Math.pow((1 + ((this.interestRate / 100) / this.calculationPeriodInterval)), (this.calculationPeriodInterval * this.calculationPeriod))).toFixed(2)
+      return (this.nullCheckedBaseAmount * Math.pow((1 + ((this.interestRate / 100) / this.calculationPeriodInterval)), (this.calculationPeriodInterval * this.calculationPeriod))).toFixed(2)
     },
     totalInterest () {
       return (this.result - this.baseAmount).toFixed(2)
@@ -92,14 +95,14 @@ $grey: #50514F;
 .calculatorContainer {
   color: $grey;
   .resultsSection {
-    margin-top: 3%;
+    margin-top: 2%;
   }
   .label {
     font-size: 1em;
     color: $grey;
   }
   .inputField {
-    margin-top: 3%;
+    margin-top: 2%;
     .col {
       padding-top: 0px;
     }
