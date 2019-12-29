@@ -29,8 +29,14 @@
       <v-overflow-btn :items="dropdownCalculationPeriodOptions" item-text="name" item-value="value" v-model="calculationPeriodInterval"></v-overflow-btn>
     </div>
     <div class="resultsSection">
-      <div>Total balance: {{ result }}</div>
-      <div>Total interest earned: {{ totalInterest }}</div>
+      <div class="totalBalanceContainer">
+        <div>Total balance:</div>
+        <div>{{ result }}</div>
+      </div>
+      <div class="totalInterestContainer">
+        <div>Total interest earned:</div>
+        <div>{{ totalInterest }}</div>
+      </div>
     </div>
   </v-container>
 </template>
@@ -95,7 +101,7 @@ $grey: #50514F;
 .calculatorContainer {
   color: $grey;
   .resultsSection {
-    margin-top: 2%;
+    margin-top: 5%;
   }
   .label {
     font-size: 1em;
@@ -107,6 +113,10 @@ $grey: #50514F;
       padding-top: 0px;
       padding-bottom: 0px;
     }
+  }
+  .totalBalanceContainer, .totalInterestContainer {
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>

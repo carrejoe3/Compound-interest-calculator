@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center" id="titleBar">
-        Simple Compound
+        Compound Me
       </div>
     </v-app-bar>
     <v-content>
