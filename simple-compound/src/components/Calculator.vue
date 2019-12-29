@@ -33,9 +33,9 @@
         <div>Total balance:</div>
         <div>{{ result }}</div>
       </div>
-      <div class="totalInterestContainer">
-        <div>Total interest earned:</div>
-        <div>{{ totalInterest }}</div>
+      <div class="totalEarnedFromInterestContainer">
+        <div>Total earned from interest:</div>
+        <div>{{ totalEarnedFromInterest }}</div>
       </div>
     </div>
   </v-container>
@@ -87,7 +87,7 @@ export default {
     result () {
       return (this.nullCheckedBaseAmount * Math.pow((1 + ((this.interestRate / 100) / this.calculationPeriodInterval)), (this.calculationPeriodInterval * this.calculationPeriod))).toFixed(2)
     },
-    totalInterest () {
+    totalEarnedFromInterest () {
       return (this.result - this.baseAmount).toFixed(2)
     }
   }
@@ -114,7 +114,7 @@ $grey: #50514F;
       padding-bottom: 0px;
     }
   }
-  .totalBalanceContainer, .totalInterestContainer {
+  .totalBalanceContainer, .totalEarnedFromInterestContainer {
     display: flex;
     justify-content: space-between;
   }
