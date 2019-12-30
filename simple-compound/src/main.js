@@ -10,3 +10,7 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
+
+Vue.filter('formatNumber', function (number) {
+  return new Intl.NumberFormat().format(number)
+})
