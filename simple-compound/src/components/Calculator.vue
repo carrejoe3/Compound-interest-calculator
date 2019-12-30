@@ -2,7 +2,9 @@
   <v-container class="calculatorContainer">
     <div class="inputField">
       <div class="label">Principle amount</div>
-      <v-text-field v-model="baseAmount" outlined type="number"></v-text-field>
+      <v-text-field v-model="baseAmount" outlined type="number">
+        <v-icon slot="append" color="$grey">mdi-cash-usd-outline</v-icon>
+      </v-text-field>
     </div>
     <div class="inputField">
       <div class="label">Interest rate</div>
@@ -31,11 +33,11 @@
     <div class="resultsSection">
       <div class="totalBalanceContainer">
         <div>Total balance:</div>
-        <div>{{ result | formatNumber }}</div>
+        <div>{{ result | toCurrency }}</div>
       </div>
       <div class="totalEarnedFromInterestContainer">
         <div>Total earned from interest:</div>
-        <div>{{ totalEarnedFromInterest | formatNumber }}</div>
+        <div>{{ totalEarnedFromInterest | toCurrency }}</div>
       </div>
     </div>
   </v-container>
